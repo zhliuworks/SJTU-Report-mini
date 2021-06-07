@@ -1,0 +1,233 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SJTU 中文简约 LaTeX 报告模板
+% Copyright 2021 Zi-Han Liu
+% GitHub @ zhliuworks
+% zihanliu2000@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{ctexart}
+
+\usepackage{amsbsy}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithmic}
+\usepackage{breakcites}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage{ctex}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{fontspec}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{mwe}
+\usepackage{multirow}
+\usepackage{palatino}
+\usepackage{subcaption}
+\usepackage{times}
+\usepackage{titlesec}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{xcolor}
+\usepackage{xurl}
+
+% 页边距设置
+\usepackage[a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm]{geometry}
+
+% 行间距设置（1.5倍行距）
+\linespread{1.5}
+
+% 超链接设置
+\usepackage[colorlinks, linkcolor=black, urlcolor=blue]{hyperref}
+\renewcommand\UrlFont{\color{blue}\fontspec{Calibri}}
+
+% 重定义各级标题格式
+\titleformat*{\section}{\huge\bfseries\centering}
+\titleformat*{\subsection}{\LARGE\bfseries}
+\titleformat*{\subsubsection}{\Large\bfseries}
+
+% 设置页样式
+\pagestyle{plain}
+
+% 内嵌代码样式设置
+\lstset{
+columns=fixed,         
+numbers=left,                                         % 在左侧显示行号
+frame=lines,                                          % 不显示背景边框
+backgroundcolor=\color[RGB]{255,255,255},             % 设定背景颜色
+basicstyle=\normalsize\fontspec{Courier New},
+keywordstyle=\color[RGB]{40,40,255},                  % 设定关键字颜色
+numberstyle=\scriptsize\color{darkgray},              % 设定行号格式
+commentstyle=\slshape\color[RGB]{0,96,96},            % 设置代码注释的格式
+stringstyle=\slshape\color[RGB]{128,0,0},             % 设置字符串格式
+showstringspaces=false,                               % 不显示字符串中的空格
+}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% 正文
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+% 英文字体（Times New Roman, Calibri, Consolas, ...）
+\fontspec{Times New Roman}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% 封面
+%%%%%%%%%%%%%%%%%%%%%%
+% 无页码
+\thispagestyle{empty}
+% SJTU图标
+\begin{figure}
+\raggedright
+\includegraphics[scale=0.6]{./imgs/sjtu.png}\\[30mm]
+\end{figure}
+\begin{center}
+% 课程名称
+\huge{\kaishu{嵌入式系统原理与应用}\hspace{5mm}IS222}\\
+\vspace{15mm}
+\fontsize{40pt}{40pt}{\heiti{项\hspace{3mm}目\hspace{3mm}报\hspace{3mm}告}}\\
+\vspace{30mm}
+% 标题
+\huge{\textsl{\textbf{Libook}}\heiti{\hspace{2mm}——\hspace{2mm}基于 STM32 和 Raspi 的}}\\
+\huge{\heiti{后疫情时代图书馆座位预约系统}}\\
+\vspace{25mm}
+% 作者
+\LARGE{\kaishu{XXX$\;\mid\;$XXX$\;\mid\;$XXX$\;\mid\;$XXX$\;\mid\;$XXX}}\\
+\vspace{50mm}
+% 日期
+\LARGE{\heiti{2021年6月}}
+\end{center}
+
+% 设置封面之后的全文字体大小
+\large
+
+%%%%%%%%%%%%%%%%%%%%%%
+% 快速上手的示例
+%%%%%%%%%%%%%%%%%%%%%%
+\newpage\linespread{1.0}
+% 文字和引用
+正常\textbf{黑体}\textit{楷体}~\cite{bahdanau2014neural}
+
+% enumerate 列表 
+\begin{enumerate}
+\item a
+\end{enumerate}
+
+% itemize 列表
+\begin{itemize}
+\item a
+\end{itemize}
+
+% 超链接
+显式超链接：\url{https://github.com/sjtug}
+
+隐式超链接：\href{https://github.com/zhliuworks}{Zi-Han Liu}
+
+% 插入公式
+行内公式：$a=b+c$
+
+行间公式：\[a=b+c\]
+
+% 插入图片
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{./imgs/sjtu.png} % 可调整图片大小
+\caption{我是交大}
+\end{figure}
+
+% 并排多张子图
+\begin{figure}[H]
+\centering
+\subfloat[清华]
+{\includegraphics[scale=0.3]{./imgs/sjtu.png}}
+\qquad
+\subfloat[北大]
+{\includegraphics[scale=0.3]{./imgs/sjtu.png}}
+\caption{Top2}
+\end{figure}
+
+%插入代码
+\noindent C程序
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+
+void main() {
+	printf("hello world");
+}
+\end{lstlisting}
+
+\noindent Python脚本
+\begin{lstlisting}[language=Python]
+import numpy as np
+def hello():
+	return 0
+\end{lstlisting}
+
+\noindent Shell命令
+\begin{lstlisting}[language=Bash,numbers=none]
+echo "111" > a
+\end{lstlisting}
+
+\noindent Shell脚本
+\begin{lstlisting}[language=Bash]
+make
+make install
+echo "111" > a
+\end{lstlisting}
+
+% 表格（三线表）
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lp{8cm}}
+    \toprule
+    \textbf{函数} & \textbf{描述} \\
+    \midrule
+    test\_generate\_token() & 可以获取和刷新Token \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\linespread{1.5}\newpage
+
+% 目录
+\thispagestyle{empty}\tableofcontents\newpage
+% 可调节目录间距，使用下面的代码（内嵌代码也可以这样修改）
+% \linespread{1.0}  修改
+% \thispagestyle{empty}\tableofcontents\newpage
+% \linespread{1.5}  恢复
+
+%%%%%%%%%%%%%%%%%%%%%%
+% 报告正文
+%%%%%%%%%%%%%%%%%%%%%%
+% 第一章
+\section{项目需求分析}
+
+\subsection{项目背景与设计目标}
+
+\subsection{项目功能概览}
+
+\subsection{项目特色与创新点}
+
+% 第二章
+\section{项目设计实现}
+
+\subsection{系统架构设计}
+
+% 第三章
+\section{项目测试}
+
+% 第四章
+\section{项目部署}
+
+% 第五章
+\section{项目总结}
+
+% 参考文献
+\section*{参考文献}
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
